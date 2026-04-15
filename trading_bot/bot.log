@@ -3,3 +3,13 @@
 2026-04-15 21:08:09,828 - trading_bot - INFO - Order received response: {'orderId': 12345678, 'symbol': 'BTCUSDT', 'status': 'FILLED', 'executedQty': '0.001', 'avgPrice': '68500.50', 'type': 'MARKET', 'side': 'BUY'}
 2026-04-15 21:08:09,828 - trading_bot - INFO - Sending order request: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_MARKET', 'quantity': 0.001, 'stopPrice': 70000.0}
 2026-04-15 21:08:09,828 - trading_bot - INFO - Order received response: {'orderId': 99998888, 'symbol': 'BTCUSDT', 'status': 'NEW', 'executedQty': '0.000', 'avgPrice': '0.00', 'type': 'STOP_MARKET', 'side': 'BUY', 'stopPrice': '70000.00'}
+2026-04-15 21:13:42,893 - trading_bot - ERROR - API Key or Secret missing. Please set them in .env file.
+2026-04-15 21:14:07,003 - trading_bot - ERROR - API Key or Secret missing. Please set them in .env file.
+2026-04-15 21:14:12,764 - trading_bot - ERROR - API Key or Secret missing. Please set them in .env file.
+2026-04-15 21:14:16,058 - trading_bot - ERROR - API Key or Secret missing. Please set them in .env file.
+2026-04-15 21:15:23,838 - trading_bot - INFO - Initialized Binance Futures Client on TESTNET
+2026-04-15 21:15:23,839 - trading_bot - INFO - Sending order request: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_MARKET', 'quantity': 0.001, 'stopPrice': 70000.0}
+2026-04-15 21:15:25,314 - trading_bot - ERROR - Binance API Error: Invalid API-key, IP, or permissions for action (Code: -2015)
+2026-04-15 21:16:54,567 - trading_bot - INFO - Initialized Binance Futures Client on TESTNET
+2026-04-15 21:16:54,568 - trading_bot - INFO - Sending order request: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_MARKET', 'quantity': 0.001, 'stopPrice': 70000.0}
+2026-04-15 21:16:54,834 - trading_bot - ERROR - Binance API Error: Invalid API-key, IP, or permissions for action (Code: -2015)
