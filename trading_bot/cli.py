@@ -10,10 +10,11 @@ console = Console()
 @click.command()
 @click.option('--symbol', required=True, help='Trading symbol (e.g., BTCUSDT)')
 @click.option('--side', type=click.Choice(['BUY', 'SELL'], case_sensitive=False), required=True, help='Order side')
-@click.option('--type', 'order_type', type=click.Choice(['MARKET', 'LIMIT'], case_sensitive=False), required=True, help='Order type')
+@click.option('--type', 'order_type', type=click.Choice(['MARKET', 'LIMIT', 'STOP_MARKET'], case_sensitive=False), required=True, help='Order type')
 @click.option('--quantity', required=True, type=float, help='Quantity to trade')
 @click.option('--price', type=float, help='Price (required for LIMIT orders)')
-def main(symbol, side, order_type, quantity, price):
+@click.option('--stop-price', type=float, help='Stop Price (required for STOP_MARKET orders)')
+def main(symbol, side, order_type, quantity, price, stop_price):
     """
     Simplified Binance Futures Trading Bot CLI
     """
@@ -28,12 +29,13 @@ def main(symbol, side, order_type, quantity, price):
     table.add_row("Type", order_type.upper())
     table.add_row("Quantity", str(quantity))
     table.add_row("Price", str(price) if price else "N/A")
+    table.add_row("Stop Price", str(stop_price) if stop_price else "N/A")
     console.print(table)
 
     # Execute Order
     try:
         manager = OrderManager()
-        result = manager.execute_order(symbol, side, order_type, quantity, price)
+        result = manager.execute_order(symbol, side, order_type, quantity, price, stop_price)
 
         if result["success"]:
             data = result["data"]

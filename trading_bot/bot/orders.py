@@ -6,10 +6,10 @@ class OrderManager:
     def __init__(self, api_key=None, api_secret=None):
         self.client = BinanceFuturesClient(api_key, api_secret)
 
-    def execute_order(self, symbol, side, order_type, quantity, price=None):
+    def execute_order(self, symbol, side, order_type, quantity, price=None, stop_price=None):
         """Validates and executes an order."""
         # Validate inputs
-        errors = validate_inputs(symbol, side, order_type, quantity, price)
+        errors = validate_inputs(symbol, side, order_type, quantity, price, stop_price)
         if errors:
             for err in errors:
                 logger.error(f"Validation Error: {err}")
@@ -21,7 +21,8 @@ class OrderManager:
                 side=side,
                 order_type=order_type,
                 quantity=quantity,
-                price=price
+                price=price,
+                stop_price=stop_price
             )
             return {"success": True, "data": response}
         except Exception as e:

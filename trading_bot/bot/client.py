@@ -28,14 +28,15 @@ class BinanceFuturesClient:
         else:
             logger.info("Initialized Binance Futures Client on MAINNET")
 
-    def place_futures_order(self, symbol, side, order_type, quantity, price=None):
+    def place_futures_order(self, symbol, side, order_type, quantity, price=None, stop_price=None):
         """
         Places a futures order.
         :param symbol: e.g. 'BTCUSDT'
         :param side: 'BUY' or 'SELL'
-        :param order_type: 'MARKET' or 'LIMIT'
+        :param order_type: 'MARKET', 'LIMIT', or 'STOP_MARKET'
         :param quantity: float/str quantity
         :param price: float/str price (required for LIMIT)
+        :param stop_price: float/str stop price (required for STOP_MARKET)
         """
         try:
             params = {
@@ -49,7 +50,12 @@ class BinanceFuturesClient:
                 if not price:
                     raise ValueError("Price is required for LIMIT orders")
                 params['price'] = price
-                params['timeInForce'] = 'GTC'  # Good Till Cancelled
+                params['timeInForce'] = 'GTC'
+                
+            elif order_type.upper() == 'STOP_MARKET':
+                if not stop_price:
+                    raise ValueError("Stop Price is required for STOP_MARKET orders")
+                params['stopPrice'] = stop_price
             
             logger.info(f"Sending order request: {params}")
             
